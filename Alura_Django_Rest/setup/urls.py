@@ -20,5 +20,5 @@ from escola import views
 
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('alunos/', views.alunos),
+    path('', views.alunos),
 ]
