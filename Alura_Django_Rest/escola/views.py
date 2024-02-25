@@ -1,6 +1,6 @@
 from rest_framework import viewsets
 from escola.models import Aluno, Curso
-from serializer import AlunoSerializer, CursoSerializer
+from escola.serializer import AlunoSerializer, CursoSerializer
 
 # Create your views here.
 class AlunoViewSet(viewsets.ModelViewSet):
