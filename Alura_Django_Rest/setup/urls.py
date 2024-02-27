@@ -16,14 +16,9 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from rest_framework import routers
-from escola.views import AlunoViewSet, CursoViewSet
-
-router = routers.DefaultRouter()
-router.register('alunos', AlunoViewSet, basename='Alunos')
-router.register('cursos', CursoViewSet, basename='Cursos')
 
 urlpatterns = [
+    path('escola/v1/', include('escola.urls', namespace='escola')),
+    path('escola-auth/', include('rest_framework.urls', namespace='rest_framework')),
     path('admin/', admin.site.urls),
-    path('', include(router.urls)),
 ]
