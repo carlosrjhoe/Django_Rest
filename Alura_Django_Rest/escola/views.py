@@ -1,6 +1,6 @@
-from rest_framework import viewsets, permissions
+from rest_framework import viewsets, permissions, generics
 from escola.models import Aluno, Curso, Matricula
-from escola.serializer import AlunoSerializer, CursoSerializer, MatriculaSerializer
+from escola.serializer import AlunoSerializer, CursoSerializer, MatriculaSerializer, ListaMatriculasAlunoSerializer
 
 # Create your views here.
 class AlunoViewSet(viewsets.ModelViewSet):
@@ -8,7 +8,6 @@ class AlunoViewSet(viewsets.ModelViewSet):
     queryset = Aluno.objects.all()
     serializer_class = AlunoSerializer
     permission_classes = [permissions.IsAuthenticated]
-
 
 class CursoViewSet(viewsets.ModelViewSet):
     """Exibindo todos os cursos"""
@@ -21,3 +20,10 @@ class MatriculaViewSet(viewsets.ModelViewSet):
     queryset = Matricula.objects.all()
     serializer_class = MatriculaSerializer
     permission_classes = [permissions.IsAuthenticated]
+
+class ListaMatriculaViewSet(generics.ListAPIView):
+    """Exibindo as matricula de alunos"""
+    def get_queryset(self):
+        queryset = Matricula.objects.filter(aluno_id=self.kwargs['pk'])
+        return queryset
+    serializer_class = ListaMatriculasAlunoSerializer
