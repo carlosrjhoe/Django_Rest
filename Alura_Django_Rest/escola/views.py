@@ -9,19 +9,22 @@ class AlunoViewSet(viewsets.ModelViewSet):
     """Exibindo todos os alunos"""
     queryset = Aluno.objects.all()
     serializer_class = AlunoSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 class CursoViewSet(viewsets.ModelViewSet):
     """Exibindo todos os cursos"""
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 class MatriculaViewSet(viewsets.ModelViewSet):
     """Exibindo todas as matriculas"""
     queryset = Matricula.objects.all()
     serializer_class = MatriculaSerializer
-    permission_classes = [permissions.IsAuthenticated]
+    authentication_classes = [BasicAuthentication]
+    permission_classes = [IsAuthenticated]
 
 class ListaMatriculasAluno(generics.ListAPIView):
     """Exibindo as matricula de alunos"""
