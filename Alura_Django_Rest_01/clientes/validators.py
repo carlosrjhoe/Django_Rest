@@ -1,8 +1,11 @@
 import re
+from validate_docbr import CPF
 
-def cpf_valido(cpf):
-    return len(cpf) == 11
-        
+def cpf_valido(numero_cpf):
+    """Verificar se o cpf é válido (123.123.123-12))"""
+    cpf = CPF()
+    return cpf.validate(numero_cpf)
+    
 def nome_valido(nome):
     return nome.isalpha()
 
