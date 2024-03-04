@@ -1,6 +1,6 @@
 # Título do Projeto
 
-Este projeto básico de CRUD, CRUD (Create, Read, Update, Delete) para treinar as quatro operações básicas de armazenamento persistente.
+Este projeto básico de CRUD, (Create, Read, Update, Delete) para treinar as quatro operações básicas de armazenamento persistente.
 
 ## Apêndice
 
@@ -18,7 +18,7 @@ busco a minha primeira oportunidade de trabalho no mercado de TI, onde minha pri
 
 
 ## 🔗 Links
-[![linkedin](https://www.linkedin.com/in/carlos-roberto-a5b22129a/)]
+[@Linkedin](https://www.linkedin.com/in/carlos-roberto-a5b22129a/)
 
 <!-- [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://katherineoelsner.com/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
