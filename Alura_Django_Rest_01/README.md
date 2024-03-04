@@ -18,8 +18,7 @@ busco a minha primeira oportunidade de trabalho no mercado de TI, onde minha pri
 
 
 ## 🔗 Links
-[![portfolio] """Em Concstrução"""]
-[![linkedin](https://www.linkedin.com/in/carlos-roberto-a5b22129a/)](https://www.linkedin.com/)
+[![linkedin](https://www.linkedin.com/in/carlos-roberto-a5b22129a/)]
 
 <!-- [![portfolio](https://img.shields.io/badge/my_portfolio-000?style=for-the-badge&logo=ko-fi&logoColor=white)](https://katherineoelsner.com/)
 [![linkedin](https://img.shields.io/badge/linkedin-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/)
