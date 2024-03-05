@@ -1,6 +1,6 @@
 from rest_framework import viewsets, permissions, generics, filters
 from escola.models import Aluno, Curso, Matricula
-from escola.serializer import AlunoSerializer, CursoSerializer, MatriculaSerializer, ListaMatriculasAlunoSerializer, ListaAlunosMatriculadosCursoSerializer
+from escola.serializer import AlunoSerializer, AlunoSerializerV2, CursoSerializer, MatriculaSerializer, ListaMatriculasAlunoSerializer, ListaAlunosMatriculadosCursoSerializer
 from rest_framework.authentication import BasicAuthentication
 from rest_framework.permissions import IsAuthenticated
 from django_filters.rest_framework import DjangoFilterBackend
@@ -9,10 +9,14 @@ from django_filters.rest_framework import DjangoFilterBackend
 class AlunoViewSet(viewsets.ModelViewSet):
     """Exibindo todos os alunos"""
     queryset = Aluno.objects.all()
-    serializer_class = AlunoSerializer
     authentication_classes = [BasicAuthentication]
     permission_classes = [IsAuthenticated]
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
+    def get_serializer_class(self):
+        if self.request.version == 'v2':
+            return AlunoSerializerV2
+        else:
+            return AlunoSerializer
 
 class CursoViewSet(viewsets.ModelViewSet):
     """Exibindo todos os cursos"""
