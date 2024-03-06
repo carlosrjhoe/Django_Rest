@@ -2,7 +2,7 @@ from rest_framework import viewsets, permissions, generics, filters
 from escola.models import Aluno, Curso, Matricula
 from escola.serializer import AlunoSerializer, AlunoSerializerV2, CursoSerializer, MatriculaSerializer, ListaMatriculasAlunoSerializer, ListaAlunosMatriculadosCursoSerializer
 from rest_framework.authentication import BasicAuthentication
-from rest_framework.permissions import IsAuthenticated
+from rest_framework.permissions import IsAuthenticated, DjangoModelPermissions
 from django_filters.rest_framework import DjangoFilterBackend
 
 # Create your views here.
@@ -10,7 +10,7 @@ class AlunoViewSet(viewsets.ModelViewSet):
     """Exibindo todos os alunos"""
     queryset = Aluno.objects.all()
     authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, DjangoModelPermissions]
     filter_backends = [DjangoFilterBackend, filters.OrderingFilter]
     def get_serializer_class(self):
         if self.request.version == 'v2':
@@ -23,14 +23,13 @@ class CursoViewSet(viewsets.ModelViewSet):
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
     authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
-
+    permission_classes = [IsAuthenticated, DjangoModelPermissions]
 class MatriculaViewSet(viewsets.ModelViewSet):
     """Exibindo todas as matriculas"""
     queryset = Matricula.objects.all()
     serializer_class = MatriculaSerializer
     authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, DjangoModelPermissions]
 
 class ListaMatriculasAluno(generics.ListAPIView):
     """Exibindo as matricula de alunos"""
@@ -39,8 +38,7 @@ class ListaMatriculasAluno(generics.ListAPIView):
         return queryset
     serializer_class = ListaMatriculasAlunoSerializer
     authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
-
+    permission_classes = [IsAuthenticated, DjangoModelPermissions]
 class ListaAlunosMatriculados(generics.ListAPIView):
     """Exibindo alunos matriculados em um curso"""
     def get_queryset(self):
@@ -48,4 +46,4 @@ class ListaAlunosMatriculados(generics.ListAPIView):
         return queryset
     serializer_class = ListaAlunosMatriculadosCursoSerializer
     authentication_classes = [BasicAuthentication]
-    permission_classes = [IsAuthenticated]
+    permission_classes = [IsAuthenticated, DjangoModelPermissions]
