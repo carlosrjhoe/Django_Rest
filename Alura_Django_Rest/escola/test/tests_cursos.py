@@ -22,8 +22,19 @@ class CursosTestCase(APITestCase):
         response = self.client.get(self.list_url)
         self.assertEquals(response.status_code, status.HTTP_200_OK)
 
-    # def test_requisicao_POST_para_criar_cursos(self):
-    #     """Teste para verificar se a requisição POST para criar um curso"""
-    #     data = {'codigo': 'CTT3', 'descricao': 'Curso teste 3', 'nivel': 'A'}
-    #     response = self.client.post(self.list_url, data=data)
-    #     self.assertEquals(response.status_code, status.HTTP_201_CREATED)
+    def test_requisicao_POST_para_criar_cursos(self):
+        """Teste para verificar se a requisição POST para criar um curso"""
+        data = {'codigo': 'CTT3', 'descricao': 'Curso teste 3', 'nivel': 'A'}
+        response = self.client.post(self.list_url, data=data)
+        self.assertEquals(response.status_code, status.HTTP_201_CREATED)
+
+    def test_requisicao_DELETE_para_deletar_curso(self):
+        """Teste para verificar se a requisição DELETE para deletar um curso"""
+        response = self.client.delete('/cursos/1/')
+        self.assertEquals(response.status_code, status.HTTP_405_METHOD_NOT_ALLOWED)
+        
+    def test_requisicao_PUT_para_atualizar_curso(self):
+        """Teste para verificar se a requisição PUT para atualizar um curso"""
+        data = {'codigo': 'CTT1', 'descricao': 'Curso teste 3 atualizado', 'nivel': 'I'}
+        response = self.client.delete('/cursos/1/', data=data)
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
