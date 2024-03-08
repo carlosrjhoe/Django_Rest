@@ -4,6 +4,8 @@ from escola.serializer import AlunoSerializer, AlunoSerializerV2, CursoSerialize
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework import status
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
 
 # Create your views here.
 class AlunoViewSet(viewsets.ModelViewSet):
@@ -35,6 +37,10 @@ class MatriculaViewSet(viewsets.ModelViewSet):
     queryset = Matricula.objects.all()
     serializer_class = MatriculaSerializer
     http_method_names = ['get', 'post', 'put', 'patch']
+
+    @method_decorator(cache_page(10))
+    def dispatch(self, *args, **kwargs):
+        return super(MatriculaViewSet, self).dispatch(*args, **kwargs)
 
 class ListaMatriculasAluno(generics.ListAPIView):
     """Exibindo as matricula de alunos"""
