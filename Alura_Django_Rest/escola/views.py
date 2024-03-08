@@ -18,10 +18,12 @@ class CursoViewSet(viewsets.ModelViewSet):
     """Exibindo todos os cursos"""
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
+    
 class MatriculaViewSet(viewsets.ModelViewSet):
     """Exibindo todas as matriculas"""
     queryset = Matricula.objects.all()
     serializer_class = MatriculaSerializer
+    http_method_names = ['get', 'post', 'put', 'patch']
 
 class ListaMatriculasAluno(generics.ListAPIView):
     """Exibindo as matricula de alunos"""
@@ -29,6 +31,7 @@ class ListaMatriculasAluno(generics.ListAPIView):
         queryset = Matricula.objects.filter(aluno_id=self.kwargs['pk'])
         return queryset
     serializer_class = ListaMatriculasAlunoSerializer
+    
 class ListaAlunosMatriculados(generics.ListAPIView):
     """Exibindo alunos matriculados em um curso"""
     def get_queryset(self):
