@@ -2,6 +2,8 @@ from rest_framework import viewsets, permissions, generics, filters
 from escola.models import Aluno, Curso, Matricula
 from escola.serializer import AlunoSerializer, AlunoSerializerV2, CursoSerializer, MatriculaSerializer, ListaMatriculasAlunoSerializer, ListaAlunosMatriculadosCursoSerializer
 from django_filters.rest_framework import DjangoFilterBackend
+from rest_framework.response import Response
+from rest_framework import status
 
 # Create your views here.
 class AlunoViewSet(viewsets.ModelViewSet):
@@ -18,7 +20,16 @@ class CursoViewSet(viewsets.ModelViewSet):
     """Exibindo todos os cursos"""
     queryset = Curso.objects.all()
     serializer_class = CursoSerializer
-    
+
+    def create(self, request):
+        serializer = self.serializer_class(data=request.data)
+        if serializer.is_valid():
+            serializer.save()
+            response = Response(serializer.data, status=status.HTTP_201_CREATED)
+            id = str(serializer.data['id'])
+            response['Location'] = request.biuld_absolute_uri() + id
+            return response
+            
 class MatriculaViewSet(viewsets.ModelViewSet):
     """Exibindo todas as matriculas"""
     queryset = Matricula.objects.all()
