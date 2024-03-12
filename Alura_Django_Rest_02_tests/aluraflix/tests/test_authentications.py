@@ -20,6 +20,12 @@ class AuthenticationsUserTestCase(APITestCase):
         response = self.client.get(self.list_url)
         self.assertEquals(response.status_code, status.HTTP_401_UNAUTHORIZED)
 
+    def test_requisicao_GET_com_user_autorizada(self):
+        """Test que verifica uma requisição GET com user autorizada"""
+        self.client.force_authenticate(self.user)
+        response = self.client.get(self.list_url)
+        self.assertEquals(response.status_code, status.HTTP_200_OK)
+
     def test_authenticacao_de_user_com_username_incorreto(self):
         """Test que verifica authenticação de user com username incorreto"""
         user = authenticate(username='admi', password='admin')
